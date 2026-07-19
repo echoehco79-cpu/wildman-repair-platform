@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>野人先生 AI设备维修协同方案看板 · Standalone</title>
+  <style>/*__INLINE_CSS__*/</style>
+</head>
+<body>
+  <div id="standalone-app" class="standalone" data-current-chapter="0">
+    <header class="topbar no-print">
+      <div class="brand"><strong>野人先生</strong><span>AI 设备维修协同方案看板</span></div>
+      <nav id="chapter-nav" class="chapter-nav" aria-label="章节导航"></nav>
+      <div class="top-actions">
+        <button type="button" data-action="overview" aria-label="打开章节总览">总览</button>
+        <button type="button" data-action="copy" aria-label="复制当前章节编号">复制章节</button>
+        <button type="button" data-action="fullscreen" aria-label="进入全屏">全屏</button>
+        <button type="button" data-action="reset-all" aria-label="重置全部产品状态">重置</button>
+      </div>
+    </header>
+    <div class="progress no-print" aria-hidden="true"><i id="progress-bar"></i></div>
+
+    <main id="chapter-track" class="chapter-track">
+      <section class="chapter chapter-01" id="business-context" data-chapter="01" aria-labelledby="title-01">
+        <div class="chapter-canvas">
+          <header class="chapter-head"><p>第一幕 · 业务与研究 / 01</p><h1 id="title-01">业务背景与命题理解</h1><span class="evidence confirmed">已确认事实 + 行业参照</span></header>
+          <div class="business-stage">
+            <div class="opening-statement"><p>命题不是“做一个报修工具”，而是让设备异常从现场事实开始，形成可解释、可流转、可验收、可追溯的协同闭环。</p><strong>门店是终端制作与顾客体验的兑现节点。</strong></div>
+            <div class="business-chain" aria-label="业务链">
+              <div><b>中央预处理</b><small>原料与基底预处理</small></div><i>→</i>
+              <div class="sage"><b>冷链运输</b><small>冷冻基底运输</small></div><i>→</i>
+              <div class="orange"><b>门店制作</b><small>终端制作节点</small></div><i>→</i>
+              <div class="orange"><b>现场出品</b><small>品质与效率兑现</small></div><i>→</i>
+              <div><b>顾客体验</b><small>品牌承诺落点</small></div>
+            </div>
+            <div class="role-triangle">
+              <div><span>门店</span><p>提交现场事实、补充信息、完成验收</p></div>
+              <div><span>维修管理</span><p>处理异常、低置信度、冲突和改派</p></div>
+              <div><span>责任方</span><p>接单、维修、填写专业事实</p></div>
+              <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8L92 82H8Z"/></svg>
+            </div>
+          </div>
+          <p class="source-note">来源：DeepResearch、系统需求说明书。企业内部流程细节待企业验证。</p>
+        </div>
+      </section>
+
+      <section class="chapter chapter-02" id="business-impact" data-chapter="02" aria-labelledby="title-02">
+        <div class="chapter-canvas">
+          <header class="chapter-head"><p>第一幕 · 业务与研究 / 02</p><h1 id="title-02">为什么设备维修是经营问题</h1><span class="evidence verify">实际频率与损失待企业验证</span></header>
+          <div class="impact-chain">
+            <div class="impact-origin"><span>设备异常</span><small>现场事实起点</small></div><i>→</i>
+            <div><b>制作能力</b><p>设备是否能支持门店继续生产</p></div><i>→</i>
+            <div><b>出品质量</b><p>形态、温控和一致性是否满足要求</p></div><i>→</i>
+            <div><b>正常营业</b><p>等待、缺货和替代流程是否扩大影响</p></div><i>→</i>
+            <div class="impact-end"><b>品牌承诺</b><p>顾客最终感知的是业务结果</p></div>
+          </div>
+          <div class="impact-matrix">
+            <div><span>生产</span><b>能否继续制作</b><p>判断生产能力和出品中断程度</p></div>
+            <div><span>营业</span><b>是否影响售卖</b><p>判断排队、缺货或支付影响</p></div>
+            <div><span>温控</span><b>是否超出安全范围</b><p>高风险时必须人工介入</p></div>
+            <div><span>食安</span><b>是否存在潜在风险</b><p>系统只升级，不输出危险操作</p></div>
+          </div>
+          <blockquote>设备维修的管理对象不是“修理动作”，而是从制作能力中断到业务恢复的完整过程。</blockquote>
+        </div>
+      </section>
+
+      <section class="chapter chapter-03" id="as-is-boundary" data-chapter="03" aria-labelledby="title-03">
+        <div class="chapter-canvas">
+          <header class="chapter-head"><p>第一幕 · 业务与研究 / 03</p><h1 id="title-03">As-Is流程假设与研究边界</h1><span class="evidence verify">假设版，待企业校准</span></header>
+          <div class="flow-evidence-layout">
+            <button class="image-button flow-image" data-lightbox="as-is" aria-label="放大As-Is流程图"><img src="__IMG_as-is-flow.png__" alt="As-Is流程假设图，包含T1至T14断点"></button>
+            <aside><h2>证据边界</h2><dl><dt>已确认事实</dt><dd>本项目已完成可运行Demo与人工验收。</dd><dt>合理推断</dt><dd>多角色维修协同需要统一事实与责任状态。</dd><dt>行业参照</dt><dd>维修流程通常包含受理、定责、处理、验收与履历。</dd><dt>待企业验证</dt><dd>真实渠道、角色、供应商、SLA、异常频率和损失。</dd></dl></aside>
+          </div>
+          <p class="boundary-banner">本图用于提出需要企业共同校准的问题，不代表野人先生现行维修流程。</p>
+        </div>
+      </section>
+
+      <section class="chapter chapter-04" id="breakpoints" data-chapter="04" aria-labelledby="title-04">
+        <div class="chapter-canvas">
+          <header class="chapter-head"><p>第二幕 · 问题诊断 / 04</p><h1 id="title-04">核心协同断点</h1><span class="evidence inference">合理推断，待企业验证</span></header>
+          <div class="breakpoint-map" aria-label="T1至T14断点地图">
+            <div class="breakpoint-axis"><span>现场发现</span><span>信息受理</span><span>责任判断</span><span>维修协同</span><span>验收沉淀</span></div>
+            <div id="breakpoint-items"></div>
+          </div>
+          <div class="breakpoint-legend"><span class="solved">Demo已解决</span><span class="partial">部分解决</span><span class="future">待企业验证/未来规划</span></div>
+          <p class="chapter-conclusion">重点断点 T3、T5、T6、T7、T8、T10、T13、T14 被统一工单、规则路由、状态机、SLA、验收和设备履历串联。</p>
+        </div>
+      </section>
+
+      <section class="chapter chapter-05" id="root-causes" data-chapter="05" aria-labelledby="title-05">
+        <div class="chapter-canvas">
+          <header class="chapter-head"><p>第二幕 · 问题诊断 / 05</p><h1 id="title-05">根因分析</h1><span class="evidence inference">问题树：合理推断</span></header>
+          <div class="root-tree">
+            <div class="tree-root"><strong>维修协同难以稳定闭环</strong><small>表象不是根因</small></div>
+            <div class="tree-branches">
+              <article><b>信息</b><p>自然语言缺少结构，原始事实在转述中变化</p></article>
+              <article><b>主数据</b><p>门店、设备、型号、保修和责任方缺少统一映射</p></article>
+              <article><b>规则</b><p>责任判断依赖经验，命中原因不可解释</p></article>
+              <article><b>协同</b><p>接单、拒单、处理和超时缺少共同状态</p></article>
+              <article><b>闭环</b><p>维修完成与业务验收混同，履历无法连续沉淀</p></article>
+            </div>
+            <aside><p>没有统一事实</p><p>没有统一规则</p><p>没有统一责任状态</p><p>没有统一闭环记录</p></aside>
+          </div>
+          <blockquote>因此，普通工单或单一AI工具不足：需要AI、规则、状态机、权限、SLA和数据底座共同工作。</blockquote>
+        </div>
+      </section>
+
+      <section class="chapter chapter-06" id="to-be" data-chapter="06" aria-labelledby="title-06">
+        <div class="chapter-canvas">
+          <header class="chapter-head"><p>第三幕 · 方案与产品 / 06</p><h1 id="title-06">To-Be目标流程</h1><span class="evidence verify">目标流程仍需企业规则校准</span></header>
+          <div class="tobe-layout">
+            <figure class="tobe-primary-figure">
+              <button class="image-button tobe-flow-image" data-lightbox="to-be" aria-label="放大To-Be流程图"><img src="__IMG_to-be-flow.png__" alt="To-Be目标流程图"></button>
+              <figcaption><b>To-Be 目标流程方向图</b><span>点击流程图可放大查看完整泳道、主流程与异常路径</span></figcaption>
+            </figure>
+            <aside class="tobe-proof-panel">
+              <div class="flow-link-guide"><b>关键节点验证</b><p>选择一个流程节点，核对谁负责、系统处理什么、形成什么输出，以及下一责任人是谁。</p></div>
+              <div id="swimlane" class="swimlane" aria-label="To-Be关键节点验证"></div>
+              <section id="tobe-node-context" class="tobe-node-context" aria-live="polite"></section>
+              <div class="linked-preview"><div class="preview-title"><span>当前节点对应产品承载</span><b id="tobe-preview-title">门店报修</b></div><div id="tobe-preview" class="online-product"></div></div>
+            </aside>
+          </div>
+          <p class="chapter-conclusion">从“信息转述与经验派单”转为“统一事实、确定性规则、异常人工兜底、门店验收与设备履历”。</p>
+        </div>
+      </section>
+
+      <section class="chapter chapter-07" id="solution-architecture" data-chapter="07" aria-labelledby="title-07">
+        <div class="chapter-canvas">
+          <header class="chapter-head"><p>第三幕 · 方案与产品 / 07</p><h1 id="title-07">整体解决方案架构</h1><span class="evidence demo">Demo模拟验证</span></header>
+          <div class="architecture-map-static">
+            <div class="architecture-main-static">
+              <section class="arch-access-static"><h2><span>01</span>角色接入</h2><div id="arch-roles"></div></section>
+              <div class="arch-working-static">
+                <div id="arch-journey" class="arch-journey-static"></div>
+                <div class="arch-body-static">
+                  <article class="arch-support-static ai"><h3><span>03</span>AI信息理解</h3><ul id="arch-ai"></ul></article>
+                  <section class="arch-hub-static">
+                    <header><span>02 · 协同主记录</span><h2>AI设备维修协同中枢</h2><p>以故障事件保留原始事实，以统一维修工单承载门店、维修管理与供应商的全流程协同。</p></header>
+                    <div class="arch-hub-chain-static"><div><small>原始事实</small><b>故障事件</b><code>FaultEvent</code></div><i>→</i><div class="order"><small>唯一协同主记录</small><b>统一维修工单</b><code>WorkOrder</code></div></div>
+                    <div id="arch-flow" class="arch-hub-facts-static"></div>
+                  </section>
+                  <div class="arch-right-static"><article class="arch-support-static rule"><h3><span>03A</span>确定性规则</h3><ul id="arch-rule"></ul></article><article class="arch-support-static system"><h3><span>03B</span>流程自动化</h3><ul id="arch-system"></ul></article></div>
+                  <article class="arch-human-static"><h3><span>03C</span>人工协同</h3><ul id="arch-human"></ul></article>
+                </div>
+              </div>
+              <section class="arch-data-static"><h2><span>04</span>统一数据底座</h2><div id="arch-data"></div></section>
+            </div>
+            <aside class="arch-values-static"><h2><span>05</span>价值输出</h2><ol id="arch-values"></ol></aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-08" id="responsibility-boundary" data-chapter="08" aria-labelledby="title-08">
+        <div class="chapter-canvas">
+          <header class="chapter-head"><p>第三幕 · 方案与产品 / 08</p><h1 id="title-08">AI、规则、系统、人工分工</h1><span class="evidence confirmed">机制边界已在Demo验证</span></header>
+          <div id="responsibility-columns" class="responsibility-columns"></div>
+          <div class="mechanism-case">
+            <nav id="mechanism-steps" aria-label="固定案例处理链"></nav>
+            <div id="mechanism-panel" class="online-product"></div>
+          </div>
+          <div class="safety-boundary"><b>安全边界</b><span>AI不得虚构设备、型号、供应商和保修</span><span>不得输出拆机、接电、制冷剂操作</span><span>低置信度、高风险和规则冲突必须人工</span><span>数据底座保存所有机制输入与输出</span></div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-09" id="product-features" data-chapter="09" aria-labelledby="title-09">
+        <div class="chapter-canvas product-chapter">
+          <header class="chapter-head compact"><div><p>第三幕 · 方案与产品 / 09</p><h1 id="title-09">核心产品功能</h1></div><div class="internal-tabs no-print"><button class="active" data-product-tab="frontend">09A 产品协同前台</button><button data-product-tab="backend">09B 数据后端与统一事实底座</button></div></header>
+          <div id="product-frontend" class="product-subpage active">
+            <div class="product-center">
+              <nav id="product-modules" class="product-module-nav" aria-label="产品模块"></nav>
+              <div class="product-live">
+                <div class="sandbox-toolbar no-print"><label>角色<select id="role-switch"><option>门店人员</option><option>维修管理人员</option><option>供应商A</option><option>供应商B</option><option>运营管理员</option></select></label><button data-sandbox="desktop">桌面</button><button data-sandbox="mobile">移动</button><button data-sandbox="reset">重置产品状态</button></div>
+                <div id="product-frame" class="product-frame online-product" data-viewport="desktop"></div>
+              </div>
+              <aside id="module-detail" class="module-detail"></aside>
+            </div>
+          </div>
+          <div id="product-backend" class="product-subpage backend-subpage">
+            <div class="backend-header"><div><h2>野人先生设备维修协同数据底座</h2><p>统一保存门店、设备、责任方、故障事件、工单、规则、状态和通知记录</p></div><span>当前页面使用Demo模拟数据，用于展示系统数据结构与可追溯能力。</span></div>
+            <div id="backend-workbench" class="backend-workbench"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-10" id="demo-validation" data-chapter="10" aria-labelledby="title-10">
+        <div class="chapter-canvas validation-chapter">
+          <header class="chapter-head compact"><div><p>第四幕 · 验证、价值与团队 / 10</p><h1 id="title-10">Demo验证结果</h1></div><span class="evidence demo">Demo模拟数据，仅验证产品机制与技术链路</span></header>
+          <div class="scenario-validator">
+            <nav id="scenario-tabs" aria-label="验证场景"></nav>
+            <div class="scenario-controls no-print"><button data-scenario-action="load">载入</button><button data-scenario-action="prev">上一步</button><button class="primary" data-scenario-action="next">下一步</button><button data-scenario-action="auto">自动播放</button><button data-scenario-action="pause">暂停</button><button data-scenario-action="reset">重置</button></div>
+            <div id="scenario-main"></div>
+          </div>
+          <div class="quality-proof"><b>质量验证</b><span>26/26 测试通过</span><span>lint通过</span><span>typecheck通过</span><span>production build通过</span><span>5条人工业务链路通过</span><span>390px关键页面通过</span></div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-11" id="value-roadmap" data-chapter="11" aria-labelledby="title-11">
+        <div class="chapter-canvas">
+          <header class="chapter-head"><p>第四幕 · 验证、价值与团队 / 11</p><h1 id="title-11">价值指标与未来落地路径</h1><span class="evidence verify">目标值待企业基线与试点验证</span></header>
+          <div class="value-roadmap">
+            <div class="metric-layers"><h2>价值指标不是虚构改善比例</h2><article><b>信息质量</b><p>设备识别率、关键信息完整率、补充率、低置信度率</p></article><article><b>协同效率</b><p>一次定责成功率、接单及时率、异常响应时间、状态停滞量</p></article><article><b>闭环质量</b><p>闭环率、验收一次通过率、返修率、重复故障率</p></article></div>
+            <div class="roadmap"><h2>五阶段落地路线</h2><ol><li><b>Demo验证</b><span>产品机制与技术链路</span></li><li><b>小范围试点</b><span>采集真实字段与流程基线</span></li><li><b>规则校准</b><span>责任边界、SLA与异常策略</span></li><li><b>区域推广</b><span>组织、权限和供应商协同</span></li><li><b>数据扩展</b><span>IoT与预测性维护仅作为未来能力</span></li></ol></div>
+          </div>
+          <blockquote>先验证统一事实与协同闭环，再用企业真实数据讨论效率、成本与规模化价值。</blockquote>
+        </div>
+      </section>
+
+      <section class="chapter chapter-12" id="team-summary" data-chapter="12" aria-labelledby="title-12">
+        <div class="chapter-canvas">
+          <header class="chapter-head"><p>第四幕 · 验证、价值与团队 / 12</p><h1 id="title-12">团队能力与总结</h1><span class="evidence verify">团队姓名与经历待补充</span></header>
+          <div class="capability-summary"><div id="delivery-capabilities"></div><aside><h2>已完成交付</h2><p>研究与流程诊断</p><p>To-Be与产品设计</p><p>数据模型、AI与规则设计</p><p>可运行Demo与人工验收</p><p>横版Showcase与离线单文件</p><div class="team-placeholder"><b>团队成员</b><span>待补充：姓名、职责与可核验经历</span></div></aside></div>
+          <div class="final-thesis"><span><b>AI</b>解决信息理解</span><i>→</i><span><b>规则</b>解决责任判断</span><i>→</i><span><b>统一工单</b>解决三方协同</span><i>→</i><span><b>SLA</b>解决流程停滞</span><i>→</i><span><b>验收与履历</b>形成闭环</span></div>
+          <div class="final-actions no-print"><button type="button" data-action="open-product">开始产品体验</button><button type="button" data-action="overview">查看章节总览</button></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bottom-bar no-print"><button data-action="prev" aria-label="上一章节">← 上一页</button><div><b id="footer-title">业务背景与命题理解</b><span id="footer-progress">01 / 12</span></div><button data-action="next" aria-label="下一章节">下一页 →</button></footer>
+
+    <div id="overview" class="overview no-print" hidden><div class="overview-head"><h2>方案总览</h2><button data-action="close-overview">返回当前章节</button></div><div id="overview-grid" class="overview-grid"></div></div>
+    <div id="lightbox" class="lightbox no-print" hidden role="dialog" aria-modal="true" aria-label="图片放大"><button data-action="close-lightbox" aria-label="关闭图片放大">×</button><img alt="放大查看"></div>
+    <div id="toast" class="toast no-print" aria-live="polite"></div>
+  </div>
+  <script>/*__INLINE_DATA__*/</script>
+  <script>/*__INLINE_SANDBOX__*/</script>
+  <script>/*__INLINE_APP__*/</script>
+</body>
+</html>
