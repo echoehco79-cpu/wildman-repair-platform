@@ -9,3 +9,6 @@ screenshots
 tmp/
 *.log
 *.tsbuildinfo
+.vercel
+.env.local
+.env.*.local
